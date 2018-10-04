@@ -38,6 +38,7 @@ public class Employee {
     }
 
     public void completeOrientation() {
+        orientationDate = new Date();
         meetWithHrForBenefitAndSalaryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();
@@ -112,7 +113,7 @@ public class Employee {
         if (ssn.matches("^\\d{3}[- ]?\\d{2}[- ]?\\d{4}$")) {
             this.ssn = ssn;
         } else {
-            throw new NumberFormatException("Invalid SSN");
+            throw new NumberFormatException("Invalid SSN / SSN is required");
         }
     }
 
@@ -129,6 +130,7 @@ public class Employee {
         return metDeptStaff;
     }
 
+    // boolean parameters need no validation
     public void setMetDeptStaff(boolean metDeptStaff) {
         this.metDeptStaff = metDeptStaff;
     }
@@ -137,6 +139,7 @@ public class Employee {
         return reviewedDeptPolicies;
     }
 
+    // boolean parameters need no validation
     public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {
         this.reviewedDeptPolicies = reviewedDeptPolicies;
     }
@@ -145,6 +148,7 @@ public class Employee {
         return movedIn;
     }
 
+    // boolean parameters need no validation
     public void setMovedIn(boolean movedIn) {
         this.movedIn = movedIn;
     }
@@ -153,8 +157,10 @@ public class Employee {
         return cubeId;
     }
 
-    
     public void setCubeId(String cubeId) {
+        if (cubeId == null || cubeId.isEmpty()) {
+            System.out.println("Cube ID is required");
+        }
         this.cubeId = cubeId;
     }
 
@@ -163,5 +169,8 @@ public class Employee {
     }
 
     public void setOrientationDate(Date orientationDate) {
+        if(orientationDate == null) {
+            System.out.println("Orientation Date is required");
+        }
         this.orientationDate = orientationDate;
     }}

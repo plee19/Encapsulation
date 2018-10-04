@@ -76,7 +76,7 @@ public class Employee {
     */
     public void doFirstTimeOrientation(String cubeId) {
         orientationDate = new Date();
-        meetWithHrForBenefitAndSalryInfo();
+        meetWithHrForBenefitAndSalaryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();
         moveIntoCubicle(cubeId);
@@ -89,7 +89,7 @@ public class Employee {
     // would only do this once, upon being hired. If that were true, this
     // method should not be public. It should only be available to this class
     // and should only be called as part of the larger task of:
-    private void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalaryInfo() {
         metWithHr = true;
         output.simpleOutput(firstName + " " + lastName + " met with Hr on "
             + getFormattedDate());
