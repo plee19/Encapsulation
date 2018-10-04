@@ -29,6 +29,7 @@ public class Employee {
     private boolean movedIn;
     private String cubeId;
     private Date orientationDate;
+    private DateUtilities dateUtility;
 
     public Employee(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
@@ -36,24 +37,27 @@ public class Employee {
         this.ssn = ssn;
     }
 
-    // Assume this must be performed first, and assume that an employee
-    // would only do this once, upon being hired.
-    public void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
-        System.out.println(firstName + " " + lastName + " met with Hr on "
-            + fmtDate);
+    public void completeOrientation() {
+        meetWithHrForBenefitAndSalaryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(cubeId);
     }
 
     // Assume this must be performed first, and assume that an employee
-    // would only do this once, upon being hired.:
-    public void meetDepartmentStaff() {
+    // would only do this once, upon being hired.
+    private void meetWithHrForBenefitAndSalaryInfo() {
+        metWithHr = true;
+        System.out.println(firstName + " " + lastName + " met with Hr on "
+            + dateUtility.getFormattedDate(orientationDate));
+    }
+
+    // Assume this must be performed first, and assume that an employee
+    // would only do this once, upon being hired.
+    private void meetDepartmentStaff() {
         metDeptStaff = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-            + fmtDate);
+            + dateUtility.getFormattedDate(orientationDate));
     }
 
     // Assume this must be performed third. And assume that because department
@@ -61,10 +65,8 @@ public class Employee {
     // independently from other classes.
     public void reviewDeptPolicies() {
         reviewedDeptPolicies = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-            + fmtDate);
+            + dateUtility.getFormattedDate(orientationDate));
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -73,10 +75,8 @@ public class Employee {
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + fmtDate);
+                + cubeId + " on " + dateUtility.getFormattedDate(orientationDate));
     }
 
     public String getFirstName() {
@@ -87,6 +87,9 @@ public class Employee {
     // allowed through validation.
     
     public void setFirstName(String firstName) {
+       if (firstName == null) {
+           throw new NullPointerException("Last name cannot be null.");
+       }
        this.firstName = firstName;
     }
 
@@ -95,6 +98,9 @@ public class Employee {
     }
 
     public void setLastName(String lastName) {
+        if (lastName == null) {
+            throw new NullPointerException("Last name cannot be null.");
+        }
        this.lastName = lastName;
     }
 
@@ -103,7 +109,11 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        this.ssn = ssn;
+        if (ssn.matches("^\\d{3}[- ]?\\d{2}[- ]?\\d{4}$")) {
+            this.ssn = ssn;
+        } else {
+            throw new NumberFormatException("Invalid SSN");
+        }
     }
 
     public boolean isMetWithHr() {

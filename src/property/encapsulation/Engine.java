@@ -34,7 +34,7 @@ public class Engine {
         return cylinderCount;
     }
 
-    // by making this private you cannot change the cyclinder count once
+    // by making this private you cannot change the cylinder count once
     // the engine is created. This is a requirements issue.
     private void setCylinderCount(int value) {
         if(value < 1 || value > 12) {

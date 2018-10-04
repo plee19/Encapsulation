@@ -37,7 +37,7 @@ public class Cake {
         These methods represent steps that should be performed
         in a certain order, but there is no guarantee this will happen.
         Furthermore, making all of these methods public exposes complexity
-        that is not necessary. And outputtig to the console is NOT the
+        that is not necessary. And outputting to the console is NOT the
         responsibility of this class.
     */
 
