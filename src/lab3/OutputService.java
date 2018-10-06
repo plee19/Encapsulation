@@ -1,5 +1,7 @@
 package lab3;
 
+import javax.swing.*;
+
 /**
  *
  * @author jlombardo
@@ -11,7 +13,7 @@ public class OutputService {
     }
     
     public void completeOutput(String msg) {
-        System.out.println(msg);
+        JOptionPane.showMessageDialog(null, msg);
         // sllsdkfjdlkfjdkf
     }
     

@@ -83,7 +83,7 @@ public class Employee {
     */
     public void doFirstTimeOrientation(String cubeId) {
         orientationDate = new Date();
-        meetWithHrForBenefitAndSalryInfo();
+        meetWithHrForBenefitAndSalaryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();
         moveIntoCubicle(cubeId);
@@ -97,7 +97,7 @@ public class Employee {
     // method should not be public. It should only be available to this class
     // and should only be called as part of the larger task of:
     // doFirtTimeOrientation()
-    private void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalaryInfo() {
         metWithHr = true;
         reportService.addData(firstName + " " + lastName + " met with Hr on "
             + getFormattedDate() + CRLF);
@@ -164,9 +164,11 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        if(ssn == null || ssn.length() < 9 || ssn.length() > 11) {
-            throw new IllegalArgumentException("ssn"  + REQUIRED_MSG 
-                    + "and must be between 9 and 11 characters (if hyphens are used)");
+        if(ssn.matches("^\\d{3}[- ]?\\d{2}[- ]?\\d{4}$")) {
+            this.ssn = ssn;
+        } else {
+            throw new IllegalArgumentException("ssn"  + REQUIRED_MSG
+                    + "Invalid SSN / SSN required");
         }
         this.ssn = ssn;
     }
@@ -233,6 +235,11 @@ public class Employee {
 
     public void setReportService(EmployeeReportService reportService) {
         this.reportService = reportService;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "firstName=" + firstName + ", lastName=" + lastName + ", ssn=" + ssn + '}';
     }
     
 }

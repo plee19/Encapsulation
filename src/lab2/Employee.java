@@ -32,13 +32,14 @@ public class Employee {
     private DateUtilities dateUtility;
 
     public Employee(String firstName, String lastName, String ssn) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ssn = ssn;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setSsn(ssn);
     }
 
-    public void completeOrientation() {
+    public void doFirstTimeOrientation() {
         orientationDate = new Date();
+        dateUtility = new DateUtilities();
         meetWithHrForBenefitAndSalaryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();

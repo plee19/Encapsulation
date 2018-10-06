@@ -27,7 +27,7 @@ import java.util.Date;
  *    declared private because they don't need to be called from other classes.
  * -- Notice that a separate EmployeeReportService object is created so that the 
  *    responsibility for doing output is delegated to that object. It is not
- *    the job of an Employee to do output. (Single Responsibility Principal).
+ *    the job of an Employee to do output. (Single Responsibility Principle).
  *    Also, this is a reusable object that can be used elsewhere.
  * -- Other classes representing nouns in the problem domain are used to
  *    make the simulation closer to reality. A Company "has a" HrManager that

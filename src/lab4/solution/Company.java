@@ -27,6 +27,5 @@ public class Company {
     public void setHr(HrPerson hr) {
         this.hr = hr;
     }
-    
 
 }

@@ -23,9 +23,9 @@ public class Employee {
     private Date orientationDate;
 
     public Employee(String firstName, String lastName, String ssn) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ssn = ssn;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setSsn(ssn);
     }
 
     public void setFirstName(String firstName) {
